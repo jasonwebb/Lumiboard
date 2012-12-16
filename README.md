@@ -1,5 +1,4 @@
-Lumiboard
-=========
+# Lumiboard
 
 Lumiboard is an open-source, Bluetooth-enabled, sensor-driven, Arduino-compatible LED controller platform intended to make it easy to control nearly every type of LED I have seen. Use Lumiboard to control discrete LEDs, RGB LEDs (up to 5W), LED strips and even networked lights like the BlinkM!
 
