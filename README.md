@@ -8,7 +8,7 @@ Lumiboard is an open-source platform for controlling many types of LEDs, includi
 * Digitally-addressable LED arrays (such as NeoPixel-based packages)
 * I2C LED pixels (like the BlinkM)
 
-### Board features
+## Board features
 * **ATMega328** with the Arduino Pro Mini (8 mHz @ 3.3V) bootloader flashed
 * **Screw terminals** allow all board functions to be easily tapped into.
 * **Six PWM pins** broken out and connected through a ULN2003, so you can sink two high-power RGB LEDs.
@@ -18,7 +18,7 @@ Lumiboard is an open-source platform for controlling many types of LEDs, includi
 * **Bluetooth transceiver** accessible via SoftwareSerial, so you can easily control your LEDs remotely using your smartphone or tablet.
 * **FTDI interface (3.3V)** so you can re-program the board at any time manually.
 
-### More information
+## More information
 * Author website: http://jason-webb.info
 * All my blog posts about this project: http://jason-webb.info/tag/lumiboard/
 * Wiki: http://jason-webb.info/wiki/index.php?title=Lumiboard
