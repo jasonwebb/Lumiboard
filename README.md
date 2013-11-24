@@ -1,6 +1,6 @@
 ## Lumiboard
 
-Lumiboard is an open-source platform for controlling many types of LEDs, including high-power RGB LEDs, LED strips and I2C LEDs.
+Lumiboard is an open-source platform for controlling many types of LEDs. An external sensor board enables tons of fun interactivity, and an on-board Bluetooth transceiver let's you control everything via smartphone or tablet. Lumiboard can control all of these types of LEDs:
 
 * Discrete LEDs
 * High-power common-cathode RGB (or single-color) LEDs, up to 5W
@@ -14,7 +14,7 @@ Lumiboard is an open-source platform for controlling many types of LEDs, includi
 * **Six PWM pins** broken out and connected through a ULN2003, so you can sink two high-power RGB LEDs.
 * **I2C interface** (SDA and SCL pins) for programmable LEDs like the BlinkM. 
 * **Three potentiometer inputs** so you can control RGB colors directly, or connect other sensors as analog inputs.
-* **External sensor board** containing a temperature sensor, ambient light sensor and sound sensor (see Sensor Board section)
+* **External sensor board** containing a temperature sensor, ambient light sensor and sound sensor.
 * **Bluetooth transceiver** accessible via SoftwareSerial, so you can easily control your LEDs remotely using your smartphone or tablet.
 * **FTDI interface (3.3V)** so you can re-program the board at any time manually.
 
