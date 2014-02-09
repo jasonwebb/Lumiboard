@@ -1,0 +1,109 @@
+#define  LED1_R  11
+#define  LED1_G  10
+#define  LED1_B  9
+
+#define  LED2_R  6
+#define  LED2_G  5
+#define  LED2_B  3
+
+#define  DEBUG_LED  13
+
+#define  BT_RX  7
+#define  BT_TX  12
+
+#define  POT1  A0
+#define  POT2  A1
+#define  POT3  A2
+#define  POT_THRESHOLD  2
+
+#define  SENSOR_RTN  2
+
+unsigned int LED1_RGB[3] = {255,0,0};
+unsigned int LED2_RGB[3] = {255,0,0};
+unsigned int current_pot_values[3] = {0,0,0};
+unsigned int new_pot_values[3] = {0,0,0};
+
+void setup() {
+  pinMode(POT1, INPUT_PULLUP);
+  
+  // Blink Debug LED to verify sketch starting
+  digitalWrite(DEBUG_LED, HIGH);
+  delay(1000);
+  digitalWrite(DEBUG_LED, LOW);
+  
+  checkPots();
+  
+  Serial.begin(57600);
+}
+
+void loop() {
+  boolean pots_changed = checkPots();
+  
+  Serial.print(pots_changed);
+  Serial.print("\t");
+  
+  for(int i=0; i<3; i++) {
+    Serial.print(current_pot_values[i]);
+    Serial.print("\t");
+  }
+  Serial.println();
+  
+  if(pots_changed) {
+    for(int i=0; i<3; i++) {
+     LED1_RGB[i] = map(current_pot_values[i], 0, 1023, 0, 255);
+     LED2_RGB[i] = map(current_pot_values[i], 0, 1023, 0, 255);
+    }
+     
+    updateLEDs();
+  }
+    
+}
+
+boolean checkSensors() {
+  byte rtnCheck = digitalRead(SENSOR_RTN);
+
+  if(rtnCheck == 0) {
+    return false; 
+  } else {
+    // Obtain values from sensors 
+  }
+  
+}
+
+/*********************************************
+ Check for activity on the RGB pots
+**********************************************/
+boolean checkPots() {
+  // Get latest readings from pots
+  new_pot_values[0] = analogRead(POT1);
+  new_pot_values[1] = analogRead(POT2);
+  new_pot_values[2] = analogRead(POT3);
+  
+  // Update values if they vary significantly
+  if((new_pot_values[0] > current_pot_values[0] + POT_THRESHOLD) || (new_pot_values[0] < current_pot_values[0] - POT_THRESHOLD) ||
+     (new_pot_values[1] > current_pot_values[1] + POT_THRESHOLD) || (new_pot_values[1] < current_pot_values[1] - POT_THRESHOLD) ||
+     (new_pot_values[2] > current_pot_values[2] + POT_THRESHOLD) || (new_pot_values[2] < current_pot_values[2] - POT_THRESHOLD)) {
+       for(int i=0; i<3; i++)
+         current_pot_values[i] = new_pot_values[i];
+         
+      return true;
+  } else {
+    return false; 
+  }
+}
+
+/**************************************
+ Updates both of the RGB LEDs using
+ the current values of the arrays
+***************************************/
+void updateLEDs() {
+  // Update LED 1
+  analogWrite(LED1_R, LED1_RGB[0]);
+  analogWrite(LED1_G, LED1_RGB[1]);
+  analogWrite(LED1_B, LED1_RGB[2]);
+  
+  // Update LED 2
+  analogWrite(LED2_R, LED2_RGB[0]);
+  analogWrite(LED2_G, LED2_RGB[1]);
+  analogWrite(LED2_B, LED2_RGB[2]);  
+}
